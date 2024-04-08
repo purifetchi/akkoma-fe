@@ -1,7 +1,7 @@
 <template>
   <div class="emoji-reactions">
     <UserListPopover
-      v-for="(reaction) in emojiReactions"
+      v-for="(reaction) in []"
       :key="reaction.url || reaction.name"
       :users="accountsForEmoji[reaction.url || reaction.name]"
     >
@@ -32,7 +32,7 @@
       </button>
     </UserListPopover>
     <a
-      v-if="tooManyReactions"
+      v-if="false"
       class="emoji-reaction-expand faint"
       href="javascript:void(0)"
       @click="toggleShowAll"

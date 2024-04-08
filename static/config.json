@@ -8,7 +8,7 @@
   "hidePostStats": false,
   "hideSitename": false,
   "hideUserStats": false,
-  "loginMethod": "token",
+  "loginMethod": "password",
   "logo": "/static/logo.png",
   "logoMargin": ".1em",
   "logoMask": false,

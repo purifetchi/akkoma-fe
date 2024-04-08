@@ -67,11 +67,11 @@ const resolveLanguage = (instanceLanguages) => {
 
 const getInstanceConfig = async ({ store }) => {
   try {
-    const res = await preloadFetch('/api/v2/instance')
+    const res = await preloadFetch('/api/v1/instance')
     if (res.ok) {
       const data = await res.json()
       const textlimit = data.configuration.statuses.max_characters
-      const vapidPublicKey = data.configuration.vapid.public_key
+      const vapidPublicKey = undefined
 
       store.dispatch('setInstanceOption', { name: 'textlimit', value: textlimit })
       const uploadLimits = {
@@ -96,7 +96,8 @@ const getInstanceConfig = async ({ store }) => {
         store.dispatch('setInstanceOption', { name: 'vapidPublicKey', value: vapidPublicKey })
       }
 
-      resolveStaffAccounts({ store, accounts: [data.contact.account.id] })
+      //resolveStaffAccounts({ store, accounts: [data.contact.account.id] })
+      resolveStaffAccounts({ store, accounts: [] })
     } else {
       throw (res)
     }
@@ -279,7 +280,7 @@ const resolveStaffAccounts = ({ store, accounts }) => {
 
 const getNodeInfo = async ({ store }) => {
   try {
-    const res = await preloadFetch('/nodeinfo/2.0.json')
+    const res = await preloadFetch('/nodeinfo/2.1')
     if (res.ok) {
       const data = await res.json()
       const metadata = data.metadata
